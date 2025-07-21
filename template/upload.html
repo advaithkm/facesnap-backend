@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Detection Uploader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .upload-container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .success {
+            color: green;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection Uploader</h1>
+    
+    <div class="upload-container">
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <br><br>
+            <input type="submit" value="Upload and Detect Faces">
+        </form>
+        
+        {% if success is defined %}
+            {% if success %}
+                <div class="success">
+                    <p>{{ message }}</p>
+                    <p>Uploaded file: {{ filename }}</p>
+                    <p>Faces saved in 'detected_faces' directory</p>
+                </div>
+            {% else %}
+                <div class="error">
+                    <p>{{ message }}</p>
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
